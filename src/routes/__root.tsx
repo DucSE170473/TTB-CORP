@@ -1,14 +1,12 @@
-// src/routes/__root.tsx
 import { createRootRoute, Outlet } from '@tanstack/react-router'
-import { Navbar } from '../components/Navbar'
-import { Footer } from '../components/Footer'
+import Navbar from '../components/Navbar' // Kiểm tra kỹ import này
+import Footer from '../components/Footer'
 
 export const Route = createRootRoute({
   component: () => (
-    <div className="flex flex-col min-h-screen bg-slate-50 font-sans antialiased">
+    <div className="min-h-screen bg-bg-base font-sans">
       <Navbar />
-      {/* Căn lề trên để không bị Navbar sticky đè lên nội dung */}
-      <main className="flex-grow pt-20"> 
+      <main className="pt-20"> {/* Khoảng cách để không bị Navbar đè */}
         <Outlet />
       </main>
       <Footer />

@@ -1,16 +1,20 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom"
-import Home from "./pages/Home"
+// src/App.tsx
+import { RouterProvider, createRouter } from '@tanstack/react-router'
+import { routeTree } from './routeTree.gen'
+
+// Khởi tạo router với cây route tự động từ thư mục /routes
+const router = createRouter({ routeTree })
+
+// Đăng ký kiểu cho TypeScript (giúp code không bị lỗi gợi ý)
+declare module '@tanstack/react-router' {
+  interface Register {
+    router: typeof router
+  }
+}
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-
-        {/* Trang chủ */}
-        <Route path="/" element={<Home />} />
-
-      </Routes>
-    </BrowserRouter>
+    <RouterProvider router={router} />
   )
 }
 

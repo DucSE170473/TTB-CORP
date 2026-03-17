@@ -1,3 +1,4 @@
+// src/routes/index.tsx
 import { createFileRoute } from '@tanstack/react-router'
 import Home from '../pages/Home'
 

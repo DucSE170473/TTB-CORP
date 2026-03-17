@@ -1,32 +1,47 @@
-export const Footer = () => {
+import { Link } from '@tanstack/react-router'
+import { Facebook, Linkedin, Mail, MapPin, Phone, ArrowUpRight } from "lucide-react"
+
+const FooterLink = ({ to, children }: { to: string, children: React.ReactNode }) => (
+  <Link to={to} className="group flex items-center gap-1 text-slate-500 hover:text-yellow-600 transition-all duration-300">
+    <ArrowUpRight size={14} className="opacity-0 -ml-4 group-hover:opacity-100 group-hover:ml-0 transition-all" />
+    <span className="font-semibold text-sm">{children}</span>
+  </Link>
+)
+
+export default function Footer() {
   return (
-    <footer className="bg-slate-900 text-slate-400 py-16">
-      <div className="max-w-7xl mx-auto px-4 grid md:grid-cols-4 gap-12">
-        <div className="col-span-2">
-          <img src="/ttb-white.jpg" alt="TTB Logo" className="h-12 mb-6" />
-          <p className="max-w-md">
-            TTB-Corp: Đơn vị dẫn đầu trong lĩnh vực tư vấn thiết kế và thi công kết cấu thép công nghiệp. Chúng tôi cam kết chất lượng chuẩn ISO và tiến độ vượt trội.
-          </p>
+    <footer className="bg-slate-900 text-white pt-20 pb-10">
+      <div className="max-w-7xl mx-auto px-4">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-12">
+          <div className="md:col-span-5 space-y-6">
+            <img src="/ttb-white.jpg" alt="TTB Logo" className="h-12 brightness-0 invert" />
+            <p className="text-slate-400 leading-relaxed max-w-sm">
+              <span className="font-bold text-white">TTB-Corp</span> - Tiên phong giải pháp kết cấu thép thông minh.
+            </p>
+          </div>
+
+          <div className="md:col-span-3">
+            <h4 className="text-white font-bold mb-6 uppercase tracking-widest text-sm">Khám phá</h4>
+            <ul className="space-y-4">
+              <li><FooterLink to="/about">Về chúng tôi</FooterLink></li>
+              <li><FooterLink to="/projects">Dự án tiêu biểu</FooterLink></li>
+              <li><FooterLink to="/contact">Liên hệ tư vấn</FooterLink></li>
+            </ul>
+          </div>
+
+          <div className="md:col-span-4">
+            <h4 className="text-white font-bold mb-6 uppercase tracking-widest text-sm">Trụ sở chính</h4>
+            <div className="space-y-4 text-sm text-slate-400">
+              <div className="flex gap-3">
+                <MapPin className="text-yellow-500 shrink-0" size={18} />
+                <span>Số 123, Đường Thép Việt, KCN Sóng Thần, Bình Dương</span>
+              </div>
+            </div>
+          </div>
         </div>
-        <div>
-          <h4 className="text-white font-bold mb-6 uppercase">Liên kết</h4>
-          <ul className="space-y-4 text-sm">
-            <li><a href="#" className="hover:text-yellow-500">Về chúng tôi</a></li>
-            <li><a href="#" className="hover:text-yellow-500">Quy trình sản xuất</a></li>
-            <li><a href="#" className="hover:text-yellow-500">Chính sách chất lượng</a></li>
-          </ul>
+        <div className="mt-16 pt-8 border-t border-slate-800 text-center text-[10px] text-slate-500 tracking-widest">
+          © {new Date().getFullYear()} TTB-CORP. ALL RIGHTS RESERVED.
         </div>
-        <div>
-          <h4 className="text-white font-bold mb-6 uppercase">Văn phòng</h4>
-          <p className="text-sm leading-loose">
-            Số 123, Đường Thép Việt, KCN Sóng Thần,<br />
-            Bình Dương, Việt Nam<br />
-            Hotline: 090.xxx.xxxx
-          </p>
-        </div>
-      </div>
-      <div className="max-w-7xl mx-auto px-4 border-t border-slate-800 mt-16 pt-8 text-center text-xs uppercase tracking-widest">
-        © {new Date().getFullYear()} TTB-CORP. ALL RIGHTS RESERVED.
       </div>
     </footer>
   )

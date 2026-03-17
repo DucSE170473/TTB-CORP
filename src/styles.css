@@ -1,83 +1,44 @@
-@import url("https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700&family=Manrope:wght@400;500;600;700;800&display=swap");
 @import "tailwindcss";
-@plugin "@tailwindcss/typography";
 
 @theme {
-  --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
-  /* Định nghĩa lại màu sắc cho đúng chất Thép TTB */
-  --color-ttb-yellow: #f59e0b;
-  --color-ttb-blue: #1e40af;
-  --color-ttb-red: #dc2626;
-}
-
-:root {
-  /* Màu chủ đạo cho ngành xây dựng */
-  --sea-ink: #0f172a;        /* Slate 900 - Chữ chính */
-  --sea-ink-soft: #475569;   /* Slate 600 - Chữ phụ */
-  --lagoon: #f59e0b;         /* Vàng TTB - Điểm nhấn */
-  --lagoon-deep: #d97706;    /* Vàng đậm hơn */
-  --palm: #1e293b;           /* Slate 800 - Nền khối móng */
-  --sand: #f8fafc;           /* Slate 50 - Nền sáng */
-  --foam: #ffffff;
-  --bg-base: #f1f5f9;        /* Slate 100 - Nền trang */
+  /* Định nghĩa các biến màu cho TTB-Corp */
+  --color-lagoon: #f59e0b;      /* Vàng cam thương hiệu */
+  --color-lagoon-deep: #d97706;
+  --color-sea-ink: #0f172a;     /* Xanh đen Slate 900 */
+  --color-sea-ink-soft: #475569; /* Slate 600 */
+  --color-sand: #f8fafc;
+  --color-line: #e2e8f0;
   
-  --line: rgba(15, 23, 42, 0.08);
-  --surface: rgba(255, 255, 255, 0.8);
-  --surface-strong: rgba(255, 255, 255, 0.95);
-  --inset-glint: rgba(255, 255, 255, 1);
+  --font-sans: "Manrope", sans-serif;
+  --font-display: "Fraunces", serif;
 }
 
-/* Các tùy chỉnh giữ cho giao diện mượt mà */
-body {
-  margin: 0;
-  color: var(--sea-ink);
-  font-family: var(--font-sans);
-  background-color: var(--bg-base);
-  /* Gradient nhẹ nhàng chuyên nghiệp thay vì màu biển cũ */
-  background: 
-    radial-gradient(at 0% 0%, rgba(245, 158, 11, 0.05) 0px, transparent 50%),
-    radial-gradient(at 100% 0%, rgba(30, 64, 175, 0.05) 0px, transparent 50%),
-    var(--bg-base);
-  -webkit-font-smoothing: antialiased;
+@layer base {
+  body {
+    @apply bg-slate-50 text-sea-ink antialiased;
+  }
 }
 
-/* Biến các thẻ card thành khối vững chãi */
-.island-shell {
-  border: 1px solid var(--line);
-  background: var(--surface-strong);
-  box-shadow: 
-    0 10px 15px -3px rgba(0, 0, 0, 0.1),
-    0 4px 6px -2px rgba(0, 0, 0, 0.05);
-  backdrop-filter: blur(8px);
-  border-radius: 12px;
+@layer components {
+  .page-wrap {
+    @apply max-w-7xl mx-auto px-4;
+  }
+  .display-title {
+    @apply font-black tracking-tight text-sea-ink;
+    font-family: var(--font-display);
+  }
+  .island-shell {
+    @apply bg-white border border-line shadow-sm rounded-3xl;
+  }
+  .island-kicker {
+    @apply uppercase tracking-[0.2em] font-black text-[10px];
+  }
+  .rise-in {
+    animation: rise 0.8s ease-out forwards;
+  }
 }
 
-.feature-card {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  border: 1px solid var(--line);
-  background: white;
-  border-radius: 16px;
-}
-
-.feature-card:hover {
-  transform: translateY(-5px);
-  border-color: var(--lagoon);
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-}
-
-.display-title {
-  font-family: "Manrope", sans-serif; /* Ngành thép nên dùng font Sans-serif cho hiện đại */
-  font-weight: 800;
-  letter-spacing: -0.02em;
-}
-
-/* Navbar link chuyển động mượt */
-.nav-link {
-  font-weight: 700;
-  color: var(--sea-ink-soft);
-  transition: all 0.2s;
-}
-
-.nav-link:hover, .nav-link.is-active {
-  color: var(--lagoon);
+@keyframes rise {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
 }
