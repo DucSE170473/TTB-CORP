@@ -1,29 +1,29 @@
-import { Building2, Briefcase, DraftingCompass, Factory } from "lucide-react"
+import { Factory, DraftingCompass, Building2, Briefcase } from "lucide-react"
 
 const services = [
-  { title: "Tư vấn Xây dựng", desc: "Lập dự án, thẩm tra thiết kế và quản lý chi phí tối ưu.", icon: <DraftingCompass /> },
-  { title: "Kết cấu Thép", desc: "Thiết kế & sản xuất khung thép tiền chế cho nhà xưởng cao cấp.", icon: <Factory /> },
-  { title: "Tư vấn Kinh doanh", desc: "Giải pháp chiến lược giúp doanh nghiệp vận hành hiệu quả.", icon: <Briefcase /> },
-  { title: "Thi công Trọn gói", desc: "Tổng thầu thi công từ móng đến hoàn thiện công trình.", icon: <Building2 /> },
+  { title: "Tư vấn Xây dựng", icon: <DraftingCompass />, desc: "Lập dự án và quản lý chi phí tối ưu." },
+  { title: "Kết cấu Thép", icon: <Factory />, desc: "Thiết kế, sản xuất khung thép tiền chế." },
+  { title: "Thi công Trọn gói", icon: <Building2 />, desc: "Tổng thầu thi công từ móng đến hoàn thiện." },
+  { title: "Tư vấn Kinh doanh", icon: <Briefcase />, desc: "Chiến lược vận hành hiệu quả cho doanh nghiệp." },
 ]
 
 export default function Services() {
   return (
-    <section className="py-20 bg-slate-50">
-      <div className="max-w-7xl mx-auto px-4">
+    <section className="py-24 bg-white/30">
+      <div className="page-wrap">
         <div className="text-center mb-16">
-          <h2 className="text-3xl lg:text-4xl font-black text-slate-900 uppercase">Dịch vụ cốt lõi</h2>
-          <div className="w-20 h-1.5 bg-yellow-500 mx-auto mt-4"></div>
+          <h2 className="display-title text-4xl mb-4 text-sea-ink">Dịch vụ cốt lõi</h2>
+          <div className="w-20 h-1 bg-lagoon mx-auto rounded-full"></div>
         </div>
         
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {services.map((s, i) => (
-            <div key={i} className="bg-white p-8 rounded-xl shadow-sm border-b-4 border-transparent hover:border-yellow-500 hover:shadow-xl transition-all group">
-              <div className="w-14 h-14 bg-slate-100 rounded-lg flex items-center justify-center text-yellow-600 mb-6 group-hover:bg-yellow-500 group-hover:text-white transition-colors">
-                {s.icon}
+          {services.map((item, index) => (
+            <div key={index} className="feature-card p-8 flex flex-col items-center text-center group">
+              <div className="w-16 h-16 bg-sand rounded-2xl flex items-center justify-center text-lagoon-deep mb-6 group-hover:bg-lagoon group-hover:text-white transition-all">
+                {item.icon}
               </div>
-              <h3 className="text-xl font-bold mb-3">{s.title}</h3>
-              <p className="text-slate-600 text-sm leading-relaxed">{s.desc}</p>
+              <h3 className="text-xl font-bold mb-3 text-sea-ink">{item.title}</h3>
+              <p className="text-sm text-sea-ink-soft leading-relaxed">{item.desc}</p>
             </div>
           ))}
         </div>
