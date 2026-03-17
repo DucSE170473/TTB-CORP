@@ -1,11 +1,11 @@
 @import "tailwindcss";
 
 @theme {
-  /* Định nghĩa các biến màu cho TTB-Corp */
-  --color-lagoon: #f59e0b;      /* Vàng cam thương hiệu */
+  /* Identity Colors */
+  --color-lagoon: #f59e0b;
   --color-lagoon-deep: #d97706;
-  --color-sea-ink: #0f172a;     /* Xanh đen Slate 900 */
-  --color-sea-ink-soft: #475569; /* Slate 600 */
+  --color-sea-ink: #0f172a;
+  --color-sea-ink-soft: #475569;
   --color-sand: #f8fafc;
   --color-line: #e2e8f0;
   
@@ -15,30 +15,42 @@
 
 @layer base {
   body {
-    @apply bg-slate-50 text-sea-ink antialiased;
+    @apply bg-slate-50 text-sea-ink antialiased min-h-screen flex flex-col;
+    font-family: var(--font-sans);
   }
 }
 
 @layer components {
   .page-wrap {
-    @apply max-w-7xl mx-auto px-4;
+    @apply max-w-7xl mx-auto px-4 w-full;
   }
+  
   .display-title {
     @apply font-black tracking-tight text-sea-ink;
     font-family: var(--font-display);
   }
+
+  /* Định nghĩa island-shell đơn lẻ */
   .island-shell {
-    @apply bg-white border border-line shadow-sm rounded-3xl;
+    @apply bg-white border border-line shadow-sm rounded-3xl overflow-hidden;
   }
+
   .island-kicker {
-    @apply uppercase tracking-[0.2em] font-black text-[10px];
+    @apply uppercase tracking-[0.2em] font-black text-[10px] text-lagoon;
   }
+
+  /* Thay vì @apply island-shell, ta viết thẳng thuộc tính ra đây */
+  .feature-card {
+    @apply bg-white border border-line shadow-sm rounded-3xl overflow-hidden
+           hover:shadow-xl hover:-translate-y-1 transition-all duration-300;
+  }
+
   .rise-in {
-    animation: rise 0.8s ease-out forwards;
+    animation: rise 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   }
 }
 
 @keyframes rise {
-  from { opacity: 0; transform: translateY(20px); }
+  from { opacity: 0; transform: translateY(30px); }
   to { opacity: 1; transform: translateY(0); }
 }

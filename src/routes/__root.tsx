@@ -1,15 +1,16 @@
 import { createRootRoute, Outlet } from '@tanstack/react-router'
-import Navbar from '../components/Navbar' // Kiểm tra kỹ import này
+import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
+import '../styles.css' // BUỘC PHẢI IMPORT CSS Ở ĐÂY
 
 export const Route = createRootRoute({
   component: () => (
-    <div className="min-h-screen bg-bg-base font-sans">
+    <>
       <Navbar />
-      <main className="pt-20"> {/* Khoảng cách để không bị Navbar đè */}
+      <main className="flex-grow pt-20"> {/* pt-20 để không bị Navbar đè */}
         <Outlet />
       </main>
       <Footer />
-    </div>
+    </>
   ),
 })
