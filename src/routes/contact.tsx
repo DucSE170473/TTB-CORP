@@ -1,144 +1,126 @@
 import { createFileRoute } from '@tanstack/react-router'
-import { Mail, Phone, MapPin, Clock, Send } from "lucide-react"
+import { Mail, Phone, MapPin, Clock, Send, ShieldCheck } from "lucide-react"
 
-// Đăng ký Route với TanStack Router
 export const Route = createFileRoute('/contact')({
   component: ContactPage,
 })
 
 function ContactPage() {
   return (
-    <div className="bg-white min-h-screen">
-      {/* Header Trang - Tối ưu Marketing với tone màu Slate/Yellow đặc trưng của TTB-Corp */}
-      <section className="bg-slate-900 py-16">
-        <div className="max-w-7xl mx-auto px-4 text-center">
-          <h1 className="text-4xl lg:text-5xl font-black text-white uppercase tracking-tight">
-            Kết nối với <span className="text-yellow-500">TTB-Corp</span>
+    <div className="bg-slate-50 min-h-screen font-sans">
+      {/* Hero Section - Làm tối nền để nổi bật chữ */}
+      <section className="relative bg-slate-900 py-24 px-4 overflow-hidden">
+        <div className="absolute inset-0 opacity-10">
+          <div className="grid grid-cols-8 h-full">
+            {[...Array(64)].map((_, i) => (
+              <div key={i} className="border-[0.5px] border-white/20"></div>
+            ))}
+          </div>
+        </div>
+        
+        <div className="relative z-10 max-w-7xl mx-auto text-center">
+          <h1 className="text-5xl md:text-6xl font-black text-white mb-6 tracking-tight">
+            LIÊN HỆ <span className="text-yellow-500">TTB-CORP</span>
           </h1>
-          <p className="text-slate-400 mt-4 max-w-2xl mx-auto text-lg">
-            Đội ngũ chuyên gia của chúng tôi luôn sẵn sàng lắng nghe và tư vấn giải pháp kết cấu thép tối ưu nhất cho doanh nghiệp của bạn.
+          <p className="text-slate-400 text-xl max-w-3xl mx-auto leading-relaxed">
+            Giải pháp thiết kế và thi công kết cấu thép hàng đầu. Chúng tôi luôn sẵn sàng hỗ trợ dự án của bạn.
           </p>
         </div>
       </section>
 
-      <section className="py-20 max-w-7xl mx-auto px-4">
-        <div className="grid lg:grid-cols-3 gap-12">
+      {/* Main Content */}
+      <section className="max-w-7xl mx-auto px-4 -mt-16 pb-20 relative z-20">
+        <div className="grid lg:grid-cols-3 gap-8">
           
-          {/* CỘT 1: THÔNG TIN LIÊN HỆ TRỰC TIẾP */}
-          <div className="space-y-8">
-            <div>
-              <h2 className="text-2xl font-bold text-slate-900 mb-8 flex items-center gap-3">
-                <span className="w-8 h-1 bg-yellow-500 inline-block"></span>
-                Thông tin trực tiếp
-              </h2>
-              <div className="space-y-6">
-                {/* Phone */}
-                <div className="flex items-start gap-4 group">
-                  <div className="bg-yellow-100 p-3 rounded-lg text-yellow-600 group-hover:bg-yellow-500 group-hover:text-white transition-colors">
-                    <Phone size={24} />
-                  </div>
-                  <div>
-                    <p className="font-bold text-slate-900 uppercase text-sm tracking-wider">Hotline Tư vấn</p>
-                    <a href="tel:0901234567" className="text-slate-600 hover:text-yellow-600 transition font-medium">090.xxx.xxxx (24/7)</a>
-                  </div>
-                </div>
+          {/* Card Thông tin bên trái */}
+          <div className="lg:col-span-1 space-y-6">
+            <div className="bg-white p-8 rounded-3xl shadow-xl shadow-slate-200/50 border border-slate-100">
+              <h2 className="text-2xl font-bold text-slate-900 mb-8">Thông tin liên hệ</h2>
+              
+              <div className="space-y-8">
+                <ContactInfoItem 
+                  icon={<Phone className="w-6 h-6" />} 
+                  title="Hotline 24/7" 
+                  content="090.xxx.xxxx" 
+                  link="tel:090xxxxxxx"
+                />
+                <ContactInfoItem 
+                  icon={<Mail className="w-6 h-6" />} 
+                  title="Email báo giá" 
+                  content="contact@ttb-corp.com" 
+                  link="mailto:contact@ttb-corp.com"
+                />
+                <ContactInfoItem 
+                  icon={<MapPin className="w-6 h-6" />} 
+                  title="Địa chỉ văn phòng" 
+                  content="KCN Sóng Thần, Bình Dương" 
+                />
+              </div>
 
-                {/* Email */}
-                <div className="flex items-start gap-4 group">
-                  <div className="bg-yellow-100 p-3 rounded-lg text-yellow-600 group-hover:bg-yellow-500 group-hover:text-white transition-colors">
-                    <Mail size={24} />
-                  </div>
-                  <div>
-                    <p className="font-bold text-slate-900 uppercase text-sm tracking-wider">Email báo giá</p>
-                    <a href="mailto:contact@ttb-corp.com" className="text-slate-600 hover:text-yellow-600 transition font-medium">contact@ttb-corp.com</a>
-                  </div>
+              <div className="mt-12 p-6 bg-slate-900 rounded-2xl text-white">
+                <div className="flex items-center gap-3 mb-2 text-yellow-500">
+                  <ShieldCheck />
+                  <span className="font-bold uppercase tracking-wider text-sm">Cam kết TTB</span>
                 </div>
-
-                {/* Địa chỉ */}
-                <div className="flex items-start gap-4 group">
-                  <div className="bg-yellow-100 p-3 rounded-lg text-yellow-600 group-hover:bg-yellow-500 group-hover:text-white transition-colors">
-                    <MapPin size={24} />
-                  </div>
-                  <div>
-                    <p className="font-bold text-slate-900 uppercase text-sm tracking-wider">Văn phòng đại diện</p>
-                    <p className="text-slate-600 leading-relaxed font-medium">Số 123, Đường Thép Việt, KCN Sóng Thần, Bình Dương</p>
-                  </div>
-                </div>
-
-                {/* Giờ làm việc */}
-                <div className="flex items-start gap-4 group">
-                  <div className="bg-yellow-100 p-3 rounded-lg text-yellow-600 group-hover:bg-yellow-500 group-hover:text-white transition-colors">
-                    <Clock size={24} />
-                  </div>
-                  <div>
-                    <p className="font-bold text-slate-900 uppercase text-sm tracking-wider">Giờ làm việc</p>
-                    <p className="text-slate-600 font-medium">Thứ 2 - Thứ 7: 08:00 - 17:30</p>
-                  </div>
-                </div>
+                <p className="text-slate-400 text-sm">Phản hồi yêu cầu báo giá trong vòng 24h làm việc.</p>
               </div>
             </div>
           </div>
 
-          {/* CỘT 2 & 3: FORM VÀ BẢN ĐỒ */}
+          {/* Form liên hệ bên phải */}
           <div className="lg:col-span-2 space-y-8">
-            <div className="bg-slate-50 p-8 rounded-2xl border border-slate-200 shadow-sm relative overflow-hidden">
-              {/* Trang trí nhẹ nhàng cho Form */}
-              <div className="absolute top-0 right-0 w-32 h-32 bg-yellow-500/5 rounded-full -mr-16 -mt-16"></div>
+            <div className="bg-white p-10 rounded-3xl shadow-xl shadow-slate-200/50 border border-slate-100">
+              <h3 className="text-3xl font-bold text-slate-900 mb-2">Gửi yêu cầu trực tuyến</h3>
+              <p className="text-slate-500 mb-10">Vui lòng để lại thông tin, kỹ sư của chúng tôi sẽ liên hệ tư vấn ngay.</p>
               
-              <h3 className="text-xl font-bold mb-6 text-slate-900">Gửi yêu cầu báo giá nhanh</h3>
-              
-              <form className="grid md:grid-cols-2 gap-6 relative z-10">
-                <div className="space-y-2">
-                  <label className="text-sm font-bold text-slate-700 uppercase tracking-tight">Họ và tên</label>
-                  <input 
-                    type="text" 
-                    className="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-yellow-500 focus:border-transparent outline-none transition-all bg-white" 
-                    placeholder="Nguyễn Văn A" 
-                  />
+              <form className="grid md:grid-cols-2 gap-8">
+                <div className="space-y-3">
+                  <label className="text-sm font-bold text-slate-700 uppercase">Họ và tên *</label>
+                  <input type="text" className="w-full px-5 py-4 rounded-xl bg-slate-50 border-none focus:ring-2 focus:ring-yellow-500 transition-all shadow-inner" placeholder="Nguyễn Văn A" />
                 </div>
-                <div className="space-y-2">
-                  <label className="text-sm font-bold text-slate-700 uppercase tracking-tight">Số điện thoại</label>
-                  <input 
-                    type="tel" 
-                    className="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-yellow-500 focus:border-transparent outline-none transition-all bg-white" 
-                    placeholder="090..." 
-                  />
+                <div className="space-y-3">
+                  <label className="text-sm font-bold text-slate-700 uppercase">Số điện thoại *</label>
+                  <input type="tel" className="w-full px-5 py-4 rounded-xl bg-slate-50 border-none focus:ring-2 focus:ring-yellow-500 transition-all shadow-inner" placeholder="090..." />
                 </div>
-                <div className="md:col-span-2 space-y-2">
-                  <label className="text-sm font-bold text-slate-700 uppercase tracking-tight">Nội dung dự án (Diện tích, loại nhà xưởng...)</label>
-                  <textarea 
-                    rows={4} 
-                    className="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-yellow-500 focus:border-transparent outline-none transition-all bg-white" 
-                    placeholder="Ví dụ: Tôi cần tư vấn nhà kho kết cấu thép 2000m2 tại Long An..."
-                  ></textarea>
+                <div className="md:col-span-2 space-y-3">
+                  <label className="text-sm font-bold text-slate-700 uppercase">Nội dung cần tư vấn</label>
+                  <textarea rows={5} className="w-full px-5 py-4 rounded-xl bg-slate-50 border-none focus:ring-2 focus:ring-yellow-500 transition-all shadow-inner" placeholder="Mô tả sơ bộ về diện tích, địa điểm xây dựng..."></textarea>
                 </div>
-                <button 
-                  type="submit"
-                  className="md:col-span-2 bg-yellow-500 hover:bg-slate-900 text-white font-black py-4 rounded-lg flex items-center justify-center gap-2 transition-all shadow-lg shadow-yellow-500/20 active:scale-[0.98]"
-                >
-                  GỬI THÔNG TIN NGAY <Send size={18} />
+                <button className="md:col-span-2 bg-yellow-500 hover:bg-slate-900 text-white font-black py-5 rounded-xl flex items-center justify-center gap-3 transition-all transform active:scale-95 shadow-lg shadow-yellow-500/30">
+                  XÁC NHẬN GỬI YÊU CẦU <Send size={20} />
                 </button>
               </form>
             </div>
 
-            {/* Google Maps - Tích hợp thực tế */}
-            <div className="rounded-2xl overflow-hidden shadow-md border border-slate-200 h-[450px] relative">
-              <iframe
-                title="TTB-Corp Location"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.4206639906!2d106.6912345!3d10.8555678!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTDCsDUxJzIwLjAiTiAxMDbCsDQxJzI4LjQiRQ!5e0!3m2!1svi!2svn!4v1710000000000!5m2!1svi!2svn"
-                width="100%"
-                height="100%"
-                style={{ border: 0 }}
-                allowFullScreen={true}
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                className="grayscale hover:grayscale-0 transition-all duration-700"
+            {/* Google Map Mockup */}
+            <div className="rounded-3xl overflow-hidden h-80 shadow-lg border-4 border-white">
+               <iframe
+                src="https://www.google.com/maps/embed?pb=..." // Thay link thật của bạn vào đây
+                width="100%" height="100%" style={{ border: 0 }} allowFullScreen loading="lazy"
               ></iframe>
             </div>
           </div>
-
         </div>
       </section>
+    </div>
+  )
+}
+
+// Component phụ giúp code sạch hơn
+function ContactInfoItem({ icon, title, content, link }: any) {
+  return (
+    <div className="flex items-start gap-5 group">
+      <div className="p-4 bg-slate-50 rounded-2xl text-slate-900 group-hover:bg-yellow-500 group-hover:text-white transition-all duration-300 shadow-sm">
+        {icon}
+      </div>
+      <div>
+        <p className="text-xs font-black text-slate-400 uppercase tracking-widest mb-1">{title}</p>
+        {link ? (
+          <a href={link} className="text-lg font-bold text-slate-800 hover:text-yellow-600 transition-colors">{content}</a>
+        ) : (
+          <p className="text-lg font-bold text-slate-800">{content}</p>
+        )}
+      </div>
     </div>
   )
 }
